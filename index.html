@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shourya Gupta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── TOKENS ──────────────────────────────────────────── */
+:root {
+  --bg:        #FFFFFF;
+  --bg2:       #FAFAF8;
+  --bg3:       #F0EFEA;
+  --ink:       #161616;
+  --ink2:      #3A3A3A;
+  --ink3:      #6E6E6E;
+  --rule:      rgba(0,0,0,0.85);
+  --rule-lt:   rgba(0,0,0,0.1);
+  --rule-xlt:  rgba(0,0,0,0.06);
+  --link:      #B5413A;
+
+  --font-h:    'Montserrat', system-ui, sans-serif;
+  --font-b:    'Merriweather', Georgia, serif;
+  --ease:      cubic-bezier(0.4,0,0.2,1);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-b);
+  font-size: 10pt;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── TOP NAV ─────────────────────────────────────────── */
+#topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.96);
+  border-bottom: 1px solid var(--rule-lt);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 56px;
+}
+
+.nav-brand {
+  font-family: var(--font-h);
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-brand .nb-sub {
+  display: block;
+  font-family: var(--font-b);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 8pt;
+  color: var(--ink3);
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+
+.nav-links li a {
+  display: block;
+  font-family: var(--font-h);
+  font-size: 9pt;
+  font-weight: 500;
+  color: var(--ink2);
+  text-decoration: none;
+  padding: 10px 16px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active { color: var(--ink); font-weight: 600; }
+
+/* ── PAGES WRAPPER ───────────────────────────────────── */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 110px 56px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  animation: pageIn 0.35s var(--ease) both;
+}
+
+.page.active { display: block; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TYPE SYSTEM (matches reference: bold black sans headings, thin rules) ── */
+.kicker {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 10pt;
+  color: var(--ink3);
+  margin-bottom: 6px;
+}
+
+h1.page-h {
+  font-family: var(--font-h);
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.rule-thick { height: 3px; background: var(--rule); margin: 14px 0 36px; width: 100%; }
+.rule-thin  { height: 1px; background: var(--rule-lt); margin: 0; }
+
+/* ── HOME ────────────────────────────────────────────── */
+.hero-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+
+.hero-left .kicker { margin-bottom: 8px; }
+
+h1.hero-name {
+  font-family: var(--font-h);
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.hero-role {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 11pt;
+  color: var(--ink3);
+  margin-top: 8px;
+}
+
+.hero-right {
+  border-left: 3px solid var(--rule);
+  padding-left: 28px;
+}
+
+.hero-tagline {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 12pt;
+  font-weight: 300;
+  color: var(--ink2);
+  line-height: 1.7;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.body-text {
+  font-family: var(--font-b);
+  font-size: 10pt;
+  color: var(--ink2);
+  line-height: 1.85;
+  font-weight: 400;
+}
+
+.body-text + .body-text { margin-top: 14px; }
+
+/* Home photo block (replaces sidebar pattern but inline) */
+.home-photo-block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home-photo-frame {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4/5;
+  border: 1px solid var(--rule-lt);
+  background: var(--bg3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.home-photo-frame:hover { border-color: var(--ink3); }
+
+.home-photo-frame input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 3;
+}
+
+.home-photo-frame img.up-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; z-index: 2;
+}
+
+.home-photo-ph {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+}
+
+.ph-plus {
+  width: 36px; height: 36px;
+  border: 1px dashed var(--ink3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink3); font-size: 16px;
+}
+
+.ph-text {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink3);
+  text-align: center;
+}
+
+.home-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-b);
+  font-size: 10pt;
+}
+
+.home-contacts a, .home-contacts span.cv {
+  color: var(--ink2);
+  text-decoration: none;
+}
+
+.home-contacts a:hover { color: var(--link); text-decoration: underline; }
+
+.home-contacts strong {
+  font-family: var(--font-h);
+  font-weight: 600;
+  font-size: 8pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-right: 6px;
+}
+
+.btn-row { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+
+.btn {
+  font-family: var(--font-h);
+  font-size: 8.5pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s var(--ease);
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn:hover { background: var(--ink); color: var(--bg); }
+
+/* ── SECTION HEADER (used on About/Research/Projects/etc) ──── */
+.sec-header { margin-bottom: 8px; }
+
+/* ── ABOUT ───────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.skill-section { margin-top: 28px; }
+
+.skill-label {
+  font-family: var(--font-h);
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule-lt);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+  font-family: var(--font-b);
+  font-size: 9.5pt;
+  color: var(--ink2);
+  background: var(--bg3);
+  border: 1px solid var(--rule-lt);
+  padding: 5px 13px;
+  cursor: default;
+}
+
+.chip.clickable { cursor: pointer; transition: background 0.2s, border-color 0.2s; }
+.chip.clickable:hover { background: #fff; border-color: var(--ink); }
+.chip.clickable::after { content: ' ↗'; font-size: 8pt; color: var(--ink3); }
+
+.sidebar-card {
+  border: 1px solid var(--rule-lt);
+  padding: 22px;
+  margin-bottom: 20px;
+  background: var(--bg2);
+}
+
+.sc-label {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 8px;
+}
+
+.sc-val {
+  font-family: var(--font-b);
+  font-size: 9.5pt;
+  color: var(--ink2);
+  line-height: 1.75;
+}
+
+.sc-val a { color: var(--link); text-decoration: none; }
+.sc-val a:hover { text-decoration: underline; }
+
+/* ── RESEARCH / PROJECTS ─────────────────────────────── */
+.entry-list {}
+
+.entry {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 36px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule-lt);
+}
+
+.entry:first-child { border-top: 1px solid var(--rule); }
+
+.entry-date {
+  font-family: var(--font-h);
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: var(--ink3);
+  letter-spacing: 0.03em;
+  padding-top: 3px;
+  line-height: 1.6;
+}
+
+.entry-badge {
+  display: inline-block;
+  font-family: var(--font-h);
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--ink);
+}
+
+.badge-fill { background: var(--ink); color: #fff; border-color: var(--ink); }
+.badge-outline { background: transparent; color: var(--ink); }
+
+h3.entry-title {
+  font-family: var(--font-h);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.entry-meta {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 9.5pt;
+  color: var(--ink3);
+  margin-bottom: 12px;
+}
+
+.entry-points { list-style: none; }
+
+.entry-points li {
+  font-family: var(--font-b);
+  font-size: 10pt;
+  color: var(--ink2);
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+.entry-points li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink3);
+}
+
+.poster-toggle-btn { margin-top: 16px; }
+
+.media-slot {
+  margin-top: 16px;
+  border: 1px dashed var(--rule-lt);
+  background: var(--bg2);
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-slot.video-portrait {
+  height: 420px;
+  max-width: 260px;
+  cursor: default;
+  border-style: solid;
+}
+
+.media-slot.video-portrait video {
+  object-fit: contain !important;
+  background: #0a0a0a;
+}
+
+.media-slot:hover { border-color: var(--ink3); }
+
+.media-slot input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 3;
+}
+
+.media-slot video, .media-slot img.up-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 2;
+}
+
+.slot-text {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink3);
+  text-align: center;
+  z-index: 1;
+}
+
+.slot-icon { font-size: 18px; opacity: 0.3; z-index: 1; }
+
+/* ── EDUCATION ───────────────────────────────────────── */
+.edu-block { margin-bottom: 40px; }
+
+.edu-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule-lt);
+}
+
+.edu-inst {
+  font-family: var(--font-h);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.edu-sub {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 9.5pt;
+  color: var(--ink3);
+  margin-top: 4px;
+}
+
+.inst-link-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 6px 14px 6px 6px;
+  border: 1px solid var(--rule-lt);
+  background: var(--bg2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.inst-link-bar:hover { border-color: var(--ink); background: #fff; }
+
+.inst-link-bar img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.inst-link-bar span {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+
+.edu-gpa-box { text-align: right; }
+
+.edu-gpa-num {
+  font-family: var(--font-h);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.edu-gpa-label {
+  font-family: var(--font-h);
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-top: 4px;
+}
+
+/* Report card grid */
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.report-card-btn {
+  border: 1px solid var(--rule-lt);
+  background: var(--bg2);
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  text-align: left;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.report-card-btn:hover {
+  border-color: var(--ink);
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.rc-sem {
+  font-family: var(--font-h);
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.rc-meta {
+  font-family: var(--font-b);
+  font-size: 8.5pt;
+  color: var(--ink3);
+}
+
+.rc-action {
+  font-family: var(--font-h);
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--link);
+  margin-top: 4px;
+}
+
+.report-card-btn.has-file .rc-action { color: #3a6b4a; }
+.report-card-btn.has-file .rc-action::before { content: '✓ '; }
+
+.report-info-card {
+  border: 1px solid var(--rule-lt);
+  background: var(--bg2);
+  padding: 16px 14px;
+  text-align: left;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: default;
+}
+
+/* ── AWARDS ──────────────────────────────────────────── */
+.awards-list {}
+
+.award-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule-lt);
+  cursor: default;
+}
+
+.award-row:first-child { border-top: 1px solid var(--rule); }
+
+.award-num {
+  font-family: var(--font-h);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--bg3);
+  line-height: 1;
+  -webkit-text-stroke: 1px var(--rule-lt);
+}
+
+.award-title {
+  font-family: var(--font-h);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.award-desc {
+  font-family: var(--font-b);
+  font-size: 9.5pt;
+  color: var(--ink3);
+  line-height: 1.7;
+}
+
+.award-hint {
+  font-family: var(--font-h);
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-top: 8px;
+}
+
+/* ── GALLERY ─────────────────────────────────────────── */
+.gallery-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 28px;
+}
+
+.g-tab {
+  font-family: var(--font-h);
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  padding: 10px 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.g-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+.g-tab:hover { color: var(--ink); }
+
+.gallery-panel { display: none; }
+.gallery-panel.active { display: block; }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.g-cell {
+  aspect-ratio: 4/3;
+  border: 1px dashed var(--rule-lt);
+  background: var(--bg2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+
+.g-cell:hover { border-color: var(--ink); }
+
+.g-cell input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 3;
+}
+
+.g-cell img.up-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2;
+}
+
+.g-cell-label {
+  font-family: var(--font-h);
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+.g-cell-icon { font-size: 16px; opacity: 0.25; }
+
+.g-cell.svg-cell { cursor: pointer; }
+
+.g-cell-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.94);
+  border-top: 1px solid var(--rule-lt);
+  padding: 6px 8px;
+  font-family: var(--font-h);
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink2);
+  z-index: 3;
+  text-align: center;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.v-cell {
+  aspect-ratio: 16/9;
+  border: 1px dashed var(--rule-lt);
+  background: var(--bg2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+
+.v-cell:hover { border-color: var(--ink); }
+
+.v-cell input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 3;
+}
+
+.v-cell video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 2;
+}
+
+.v-cell-label {
+  font-family: var(--font-h);
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  text-align: center;
+}
+
+.v-cell-icon { font-size: 22px; opacity: 0.25; }
+
+/* ── CONTACT ─────────────────────────────────────────── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.contact-statement {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 13pt;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule-lt);
+}
+
+.c-block { margin-bottom: 18px; }
+
+.c-label {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 5px;
+}
+
+.c-val {
+  font-family: var(--font-b);
+  font-size: 10pt;
+  color: var(--ink);
+  text-decoration: none;
+  display: block;
+}
+
+.c-val:hover { color: var(--link); }
+
+/* ── MODAL ───────────────────────────────────────────── */
+#modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(20,20,20,0.7);
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+#modal-overlay.open { display: flex; animation: fadeIn 0.2s ease both; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+#modal-box {
+  background: #fff;
+  border: 1px solid var(--rule-lt);
+  width: 100%;
+  max-width: 640px;
+  padding: 36px;
+  position: relative;
+  animation: modalIn 0.25s var(--ease) both;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#modal-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  background: none; border: none;
+  font-family: var(--font-h);
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+#modal-close:hover { color: var(--ink); }
+
+#modal-title {
+  font-family: var(--font-h);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+#modal-sub {
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 9.5pt;
+  color: var(--ink3);
+  margin-bottom: 20px;
+}
+
+.modal-img-zone {
+  border: 1px dashed var(--rule-lt);
+  background: var(--bg2);
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s;
+  margin-bottom: 14px;
+}
+
+.modal-img-zone:hover { border-color: var(--ink); }
+
+.modal-img-zone input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 3;
+}
+
+.modal-img-zone img.up-img, .modal-img-zone video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; z-index: 2; background: var(--bg2);
+}
+
+.modal-img-zone embed {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2;
+}
+
+.modal-zone-label {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink3);
+  z-index: 1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.instr-info {
+  font-family: var(--font-b);
+  font-size: 9.5pt;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+/* ── FULLSCREEN POSTER LIGHTBOX ──────────────────────── */
+#poster-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10,10,10,0.94);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease both;
+}
+
+#poster-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  flex-shrink: 0;
+}
+
+#poster-lightbox-title {
+  font-family: var(--font-h);
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #F2EDE4;
+}
+
+#poster-lightbox-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#poster-lightbox-controls button {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.08);
+  color: #F2EDE4;
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 7px 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#poster-lightbox-controls button:hover { background: rgba(255,255,255,0.18); }
+
+#poster-zoom-pct {
+  font-family: var(--font-h);
+  font-size: 8pt;
+  color: #BFBAB0;
+  min-width: 42px;
+  text-align: center;
+}
+
+#poster-lightbox-close {
+  margin-left: 8px;
+}
+
+#poster-lightbox-viewport {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  touch-action: none;
+}
+
+#poster-lightbox-img {
+  max-width: 92vw;
+  max-height: 86vh;
+  object-fit: contain;
+  background: #fff;
+  transition: transform 0.05s linear;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (max-width: 700px) {
+  #poster-lightbox-bar { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+  #poster-lightbox-title { font-size: 8pt; }
+  #poster-lightbox-controls button { padding: 6px 10px; font-size: 7pt; }
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg3); }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  #topnav { padding: 0 24px; }
+  .nav-links li a { padding: 8px 10px; font-size: 8pt; }
+  .page { padding: 90px 24px 60px; }
+  .hero-top, .hero-bottom, .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 28px; }
+  .entry { grid-template-columns: 1fr; gap: 8px; }
+  .report-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .award-row { grid-template-columns: 40px 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav id="topnav">
+  <span class="nav-brand" onclick="navigate('home')">
+    SHOURYA GUPTA
+    <span class="nb-sub">Polymer Engineering &amp; Materials Research</span>
+  </span>
+  <ul class="nav-links">
+    <li><a href="#" data-page="home" class="active">Home</a></li>
+    <li><a href="#" data-page="about">About</a></li>
+    <li><a href="#" data-page="research">Research</a></li>
+    <li><a href="#" data-page="projects">Projects</a></li>
+    <li><a href="#" data-page="education">Education</a></li>
+    <li><a href="#" data-page="awards">Awards</a></li>
+    <li><a href="#" data-page="gallery">Gallery</a></li>
+    <li><a href="#" data-page="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGES ─────────────────────────────────────────── -->
+<div id="pages-wrapper">
+
+  <!-- HOME -->
+  <div class="page active" id="page-home">
+    <h1 class="page-h">Home</h1>
+    <div class="rule-thick"></div>
+
+    <div class="hero-bottom">
+      <div>
+        <p class="body-text">I am an aspiring researcher in polymer science and advanced materials, pursuing a B.Tech in Polymer Engineering &amp; Technology with Honours at the Institute of Chemical Technology, Mumbai. My current work focuses on bio-based, UV-curable pressure-sensitive adhesives with ultra-high optical clarity.</p>
+
+        <div class="btn-row">
+          <button class="btn" onclick="navigate('research')">View Research</button>
+          <button class="btn" onclick="navigate('contact')">Get in Touch</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="home-photo-block">
+          <div class="home-photo-frame" id="home-photo">
+            <input type="file" accept="image/*" onchange="loadImg(this,'home-photo')">
+            <img src="images/home-photo.jpg" alt="Shourya Gupta" class="up-img">
+          </div>
+
+          <div class="home-contacts">
+            <div><strong>Email</strong><a href="mailto:shourya.anandgupta@gmail.com">shourya.anandgupta@gmail.com</a></div>
+            <div><strong>Phone</strong><a href="tel:+918604042515">+91 86040 42515</a></div>
+            <div><strong>Location</strong><span class="cv">Mumbai, Maharashtra, India</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="page" id="page-about">
+    <h1 class="page-h">About</h1>
+    <div class="rule-thick"></div>
+
+    <div class="about-grid">
+      <div>
+        <p class="body-text">I am a fourth-year undergraduate at the Institute of Chemical Technology (ICT), Mumbai, pursuing a B.Tech in Polymer Engineering &amp; Technology with Honours alongside a Multidisciplinary Minor in Materials Science.</p>
+        <p class="body-text">My academic interests lie at the intersection of Materials Science, polymer synthesis, adhesive science, and functional coatings. My current research, under Prof. Dr. S.T. Mhaske at the DPSE department, focuses on developing bio-derived, UV-curable pressure-sensitive adhesives with ultra-high optical clarity — an area bridging green chemistry, photopolymerisation, and optical materials.</p>
+        <p class="body-text">Beyond research, I coordinate Vortex, ICT's annual technical festival, and have contributed to community development through the GJK Foundation. I am actively looking for PhD research opportunities in advanced polymer materials and sustainable functional systems.</p>
+
+        <div class="skill-section">
+          <div class="skill-label">Instrumentation — click to view</div>
+          <div class="chips">
+            <span class="chip clickable" onclick="openInstrModal('DSC','Differential Scanning Calorimetry','Used for thermal analysis of polymers and adhesive systems.','dsc')">DSC</span>
+            <span class="chip clickable" onclick="openInstrModal('FTIR','Fourier-Transform Infrared Spectroscopy','Used for chemical structure characterisation.','ftir')">FTIR</span>
+            <span class="chip clickable" onclick="openInstrModal('XRD','X-ray Diffraction','Used for crystal structure analysis, processed using Fullprof and Vesta.','xrd')">XRD</span>
+            <span class="chip clickable" onclick="openInstrModal('UTM','Universal Testing Machine','Used for mechanical testing — peel strength, tack, and tensile properties.','utm')">UTM</span>
+            <span class="chip clickable" onclick="openInstrModal('UV-vis','UV-visible Spectroscopy','Used to measure optical transmittance and clarity of adhesive films.','uvvis')">UV-vis</span>
+            <span class="chip clickable" onclick="openInstrModal('POM','Polarising Optical Microscopy','Used for microstructure and morphology studies.','pom')">POM</span>
+          </div>
+        </div>
+
+        <div class="skill-section">
+          <div class="skill-label">Processing</div>
+          <div class="chips">
+            <span class="chip">Extrusion</span>
+            <span class="chip">Injection Moulding</span>
+            <span class="chip">Compounding</span>
+            <span class="chip">Blown Film Extrusion</span>
+            <span class="chip">UV Curing</span>
+          </div>
+        </div>
+
+        <div class="skill-section">
+          <div class="skill-label">Software</div>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">ChemDraw</span>
+            <span class="chip">MestReNova</span>
+            <span class="chip">Origin Pro</span>
+            <span class="chip">Fullprof</span>
+            <span class="chip">Vesta</span>
+            <span class="chip">MS Excel</span>
+            <span class="chip">MS PowerPoint</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-card">
+          <div class="sc-label">Institution</div>
+          <div class="sc-val">Institute of Chemical Technology (ICT)<br>Mumbai, Maharashtra</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sc-label">Programme</div>
+          <div class="sc-val">B.Tech Polymer Engineering &amp; Technology<br>Minor: Materials Science · With Honours<br>2023 – Present</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sc-label">Research Interests</div>
+          <div class="sc-val">Pressure-sensitive adhesives · Optical clarity · Polymer synthesis · Sustainable materials · Nanomaterials · Functional coatings · Template polymerisation · Hyperbranched polymers · Energy materials</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sc-label">Languages</div>
+          <div class="sc-val">English — Professional<br>Hindi — Fluent<br>Marathi — Working proficiency</div>
+        </div>
+        <div class="sidebar-card">
+          <div class="sc-label">Links</div>
+          <div class="sc-val"><a href="https://www.linkedin.com/in/shourya-gupta-6310973a6" target="_blank">LinkedIn ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="page" id="page-research">
+    <h1 class="page-h">Research</h1>
+    <div class="rule-thick"></div>
+
+    <div class="entry-list">
+
+      <div class="entry">
+        <div class="entry-date">Jan 2025<br>Ongoing</div>
+        <div>
+          <span class="entry-badge badge-fill">Ongoing</span>
+          <h3 class="entry-title">Bio-based UV-curable Optical Clarity PSA</h3>
+          <div class="entry-meta">DPSE, ICT Mumbai · Supervisor: Prof. Dr. S.T. Mhaske</div>
+          <ul class="entry-points">
+            <li>Synthesised a novel bio-derived UV-curable OCA-PSA with ultra-high optical clarity (&gt;95% transmittance) via 100% solids, low-VOC photopolymerisation — eliminating thermal post-cure.</li>
+            <li>Established structure–property–performance relationships through DSC, FTIR, UV-Vis, and UTM (peel/tack) characterisation.</li>
+            <li>Enables optical bonding and display lamination applications with low environmental impact.</li>
+          </ul>
+          <div class="media-slot video-portrait" id="res-vid-1">
+            <video src="images/psa-research-video.mp4" controls style="position:absolute;inset:0;width:100%;height:100%;z-index:2;"></video>
+          </div>
+          <label style="display:inline-block; margin-top:8px; font-family:var(--font-h); font-size:7.5pt; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink3); cursor:pointer;">
+            Replace video
+            <input type="file" accept="image/*,video/*" onchange="loadMedia(this,'res-vid-1')" style="display:none;">
+          </label>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">May 2026<br>Ongoing</div>
+        <div>
+          <span class="entry-badge badge-fill">Internship · Ongoing</span>
+          <h3 class="entry-title">Technical Market Research — Sustainable Packaging</h3>
+          <div class="entry-meta">Archroma India Pvt. Ltd. · Marketing Research Intern</div>
+          <ul class="entry-points">
+            <li>Conducting technical market research on flexible and paper-based sustainable packaging — analysing barrier chemistry stacks (O₂, oil, grease, moisture, UV), adhesive selection, and lamination vs. coating trade-offs.</li>
+            <li>Profiling market players per chemistry segment; assessing R&amp;D positioning, market valuation, demand trends, and feasibility of in-house development.</li>
+            <li>Delivering structured technical-commercial intelligence reports to senior leadership.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">2023<br>– 2024</div>
+        <div>
+          <span class="entry-badge badge-outline">Completed</span>
+          <h3 class="entry-title">Photoelectrocatalysis of Water for Hydrogen Production</h3>
+          <div class="entry-meta">Department of Physics, ICT Mumbai · Supervisor: Prof. Archana Kalekar</div>
+          <ul class="entry-points">
+            <li>Conducted an in-depth literature review on semiconductor-based photoelectrocatalytic systems for solar-driven water splitting and clean hydrogen generation.</li>
+            <li>Studied and compared different photocatalyst materials, electrode architectures, pros and cons of various approaches, and current research methodologies in the field.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="page" id="page-projects">
+    <h1 class="page-h">Projects</h1>
+    <div class="rule-thick"></div>
+
+    <div class="entry-list">
+
+      <div class="entry">
+        <div class="entry-date">Feb 2026<br>1st Prize</div>
+        <div>
+          <span class="entry-badge badge-fill">International Conference · Winner</span>
+          <h3 class="entry-title">Chemical Recycling of PET from Acidic Polyester Effluent</h3>
+          <div class="entry-meta">Rangotsav 2026 · Advances in Polymers &amp; Coatings · ICT Mumbai</div>
+          <ul class="entry-points">
+            <li>Designed and presented a closed-loop valorisation strategy for pH ~2 polyester manufacturing effluent, proposing TPA-catalysed acid hydrolysis of PET waste to recover virgin-grade TPA (&gt;98% yield) and ethylene glycol.</li>
+            <li>Proposed a complete downstream separation train (ceramic filtration → NaOH wash → H₂SO₄ precipitation) yielding pure TPA and oligomeric PET plasticiser, with feasibility assessed at 220°C and PET:H₂O = 1:8.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-date">Feb 2026<br>2nd Prize</div>
+        <div>
+          <span class="entry-badge badge-outline">International Conference · Runner-up</span>
+          <h3 class="entry-title">Smart Heat-Managing Façade Paint for Thermal Buffering</h3>
+          <div class="entry-meta">Rangotsav 2026 · Advances in Polymers &amp; Coatings · ICT Mumbai</div>
+          <ul class="entry-points">
+            <li>Designed and presented a bio-based Stearic acid/Lauric acid phase change material microencapsulated in a SiO₂–polysiloxane shell (latent heat: 189.5 J/g, Tm: 39°C) for incorporation into façade paint.</li>
+            <li>Proposed 200-minute peak temperature delay and &gt;90% enthalpy retention over 500 cycles — outperforming conventional cool-roof coatings on thermal storage, seasonal versatility, and aesthetics.</li>
+          </ul>
+          <button class="btn poster-toggle-btn" onclick="openPosterLightbox('images/facade-paint-poster.svg', 'Smart Heat-Managing Façade Paint Poster')">Click to View Poster</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="page" id="page-education">
+    <h1 class="page-h">Education</h1>
+    <div class="rule-thick"></div>
+
+    <div class="edu-block">
+      <div class="edu-top-row">
+        <div>
+          <div class="edu-inst">Institute of Chemical Technology, Mumbai</div>
+          <div class="edu-sub">B.Tech Polymer Engineering &amp; Technology · Minor: Materials Science · With Honours · 2023 – Present</div>
+          <a href="https://www.ictmumbai.edu.in/" target="_blank" rel="noopener" class="inst-link-bar">
+            <img src="images/ict-logo.jpeg" alt="ICT Mumbai logo">
+            <span>Visit ICT Mumbai ↗</span>
+          </a>
+        </div>
+        <div class="edu-gpa-box">
+          <div class="edu-gpa-num">9.65 / 10</div>
+          <div class="edu-gpa-label">Cumulative GPA</div>
+        </div>
+      </div>
+
+      <div class="report-grid">
+        <div class="report-info-card">
+          <span class="rc-sem">Semester I</span>
+          <span class="rc-meta">2024 · SGPA 8.95</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester II</span>
+          <span class="rc-meta">2024 · SGPA 9.82</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester III</span>
+          <span class="rc-meta">2025 · SGPA 9.82</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester IV</span>
+          <span class="rc-meta">2025 · SGPA 9.70</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester V</span>
+          <span class="rc-meta">2026 · SGPA 9.91</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester VI</span>
+          <span class="rc-meta">Upcoming</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester VII</span>
+          <span class="rc-meta">Upcoming</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Semester VIII</span>
+          <span class="rc-meta">Upcoming</span>
+        </div>
+      </div>
+
+      <a href="mailto:shourya.anandgupta@gmail.com?subject=Report%20Card%20Request&body=Hi%20Shourya%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20semester%20report%20cards%20for%20review.%0A%0AThank%20you." class="btn" style="margin-top:20px;">Request Report Card ↗</a>
+    </div>
+
+    <div class="edu-block">
+      <div class="edu-top-row">
+        <div>
+          <div class="edu-inst">Barrow's Blue Bells School, Bahraich</div>
+          <div class="edu-sub">Uttar Pradesh</div>
+        </div>
+      </div>
+
+      <div class="report-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 460px;">
+        <div class="report-info-card">
+          <span class="rc-sem">Class 10 · ICSE</span>
+          <span class="rc-meta">Score: 92%</span>
+        </div>
+        <div class="report-info-card">
+          <span class="rc-sem">Class 12 · ISC</span>
+          <span class="rc-meta">Score: 91%</span>
+        </div>
+      </div>
+
+      <a href="mailto:shourya.anandgupta@gmail.com?subject=Report%20Card%20Request&body=Hi%20Shourya%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20Class%2010%20%2F%2012%20report%20cards%20for%20review.%0A%0AThank%20you." class="btn" style="margin-top:20px;">Request Report Card ↗</a>
+    </div>
+
+    <div class="edu-block">
+      <div class="skill-label">Certifications — click to add certificate image</div>
+      <div class="chips">
+        <span class="chip clickable" onclick="openCertModal('Cyber Security &amp; Privacy','NPTEL','cert-cyber')">Cyber Security &amp; Privacy — NPTEL</span>
+        <span class="chip clickable" onclick="openCertModal('BTUGRP Research Internship','Certificate','cert-btugrp')">BTUGRP Research Internship</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AWARDS -->
+  <div class="page" id="page-awards">
+    <h1 class="page-h">Awards</h1>
+    <div class="rule-thick"></div>
+
+    <div class="awards-list">
+
+      <div class="award-row">
+        <div class="award-num">01</div>
+        <div>
+          <div class="award-title">Winner — Industry Defined Problem</div>
+          <div class="award-desc">International Conference: Advances in Polymers &amp; Coatings · Rangotsav 2026 · ICT Mumbai · February 2026</div>
+        </div>
+      </div>
+
+      <div class="award-row">
+        <div class="award-num">02</div>
+        <div>
+          <div class="award-title">Runner-up — Smart Façade Paint</div>
+          <div class="award-desc">International Conference: Advances in Polymers &amp; Coatings · Rangotsav 2026 · ICT Mumbai · February 2026</div>
+        </div>
+      </div>
+
+      <div class="award-row">
+        <div class="award-num">03</div>
+        <div>
+          <div class="award-title">M.V. Joshi Platinum Jubilee Endowment Award</div>
+          <div class="award-desc">ICT Mumbai · Awarded for securing the highest marks in the department</div>
+        </div>
+      </div>
+
+      <div class="award-row">
+        <div class="award-num">04</div>
+        <div>
+          <div class="award-title">Dr. Balwant Joshi Award</div>
+          <div class="award-desc">ICT Mumbai · Conferred for meritorious academic performance</div>
+        </div>
+      </div>
+
+      <div class="award-row">
+        <div class="award-num">05</div>
+        <div>
+          <div class="award-title">Academic Excellence Award</div>
+          <div class="award-desc">ICT Mumbai</div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="mailto:shourya.anandgupta@gmail.com?subject=Award%20Certificate%20Request&body=Hi%20Shourya%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20award%20certificate(s)%20for%20review.%0A%0AThank%20you." class="btn" style="margin-top:24px;">Request Certificate ↗</a>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="page" id="page-gallery">
+    <h1 class="page-h">Gallery</h1>
+    <div class="rule-thick"></div>
+
+    <div class="gallery-tabs">
+      <button class="g-tab active" onclick="switchTab(this,'gtab-photos')">Photos</button>
+      <button class="g-tab" onclick="switchTab(this,'gtab-videos')">Videos</button>
+    </div>
+
+    <div class="gallery-panel active" id="gtab-photos">
+      <div class="photo-grid">
+        <div class="g-cell svg-cell" onclick="openGalleryModal('DSC — Polypropylene Thermal Summary','images/dsc.svg')">
+          <img src="images/dsc.svg" alt="DSC Polypropylene Thermal Summary" class="up-img" style="object-fit:contain; background:#fff;">
+          <div class="g-cell-caption">DSC — Polypropylene Thermal Summary</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('POM — PEO Spherulite Growth','images/pom.svg')">
+          <img src="images/pom.svg" alt="PEO Spherulite Growth POM Summary" class="up-img" style="object-fit:contain; background:#fff;">
+          <div class="g-cell-caption">POM — PEO Spherulite Growth</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('UTM — Tensile Testing Summary','images/utm.svg')">
+          <img src="images/utm.svg" alt="UTM Tensile Testing Summary" class="up-img" style="object-fit:contain; background:#fff;">
+          <div class="g-cell-caption">UTM — Tensile Testing Summary</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('XRD — Phase Analysis Summary','images/xrd.svg')">
+          <img src="images/xrd.svg" alt="XRD Phase Analysis Summary" class="up-img" style="object-fit:contain; background:#fff;">
+          <div class="g-cell-caption">XRD — Phase Analysis Summary</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('Pyrolysis &amp; Fractional Distillation Summary','images/gallery-pyrolysis.svg')">
+          <img src="images/gallery-pyrolysis.svg" alt="Pyrolysis Fractional Distillation Summary" class="up-img" style="object-fit:contain; background:#fff;">
+          <div class="g-cell-caption">Pyrolysis &amp; Fractional Distillation</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('Rangotsav 2026 — Presenting PET Recycling Project','images/gallery-conference-presenting.jpg')">
+          <img src="images/gallery-conference-presenting.jpg" alt="Presenting at Rangotsav 2026" class="up-img" style="object-fit:cover;">
+          <div class="g-cell-caption">Conference Presentation</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('Rangotsav 2026 — Presenting PET Recycling Project','images/gallery-conference-presenting-2.jpg')">
+          <img src="images/gallery-conference-presenting-2.jpg" alt="Presenting at Rangotsav 2026" class="up-img" style="object-fit:cover;">
+          <div class="g-cell-caption">Conference Presentation</div>
+        </div>
+        <div class="g-cell svg-cell" onclick="openGalleryModal('Rangotsav 2026 — Award Ceremony, 1st Prize','images/gallery-award-ceremony.jpg')">
+          <img src="images/gallery-award-ceremony.jpg" alt="Award ceremony Rangotsav 2026" class="up-img" style="object-fit:cover;">
+          <div class="g-cell-caption">Award Ceremony</div>
+        </div>
+        <div class="g-cell" id="gc-6"><input type="file" accept="image/*" onchange="loadImg(this,'gc-6')"><div class="g-cell-icon">◻</div><div class="g-cell-label">Other</div></div>
+      </div>
+    </div>
+
+    <div class="gallery-panel" id="gtab-videos">
+      <div class="video-grid">
+        <div class="v-cell" style="cursor:default;">
+          <video src="images/gallery-electroplating.mp4" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;"></video>
+        </div>
+        <div class="v-cell" style="cursor:default;">
+          <video src="images/gallery-spherulite-presentation.mp4" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;"></video>
+        </div>
+        <div class="v-cell" id="gv-3"><input type="file" accept="video/*" onchange="loadVid(this,'gv-3')"><div class="v-cell-icon">▶</div><div class="v-cell-label">Project Demo</div></div>
+        <div class="v-cell" id="gv-4"><input type="file" accept="video/*" onchange="loadVid(this,'gv-4')"><div class="v-cell-icon">▶</div><div class="v-cell-label">Other</div></div>
+      </div>
+      <p class="body-text" style="margin-top:14px; font-style:italic; color:var(--ink3); font-size:9pt;">Electroplating of Polymers · Spherulite Growth Presentation</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="page" id="page-contact">
+    <h1 class="page-h">Contact</h1>
+    <div class="rule-thick"></div>
+
+    <div class="contact-layout">
+      <div>
+        <p class="contact-statement">Seeking a fully-funded PhD position in Materials science, polymer science and advanced materials.</p>
+        <p class="body-text">I am a final-year undergraduate at ICT Mumbai, actively applying to PhD programmes for Fall 2027 in Materials science, advanced polymer materials, adhesive systems, and optical functional coatings. I welcome the opportunity to connect with prospective advisors and discuss my research background.</p>
+      </div>
+      <div>
+        <div class="c-block">
+          <div class="c-label">Personal Email</div>
+          <a href="mailto:shourya.anandgupta@gmail.com" class="c-val">shourya.anandgupta@gmail.com</a>
+        </div>
+        <div class="c-block">
+          <div class="c-label">Institute Email</div>
+          <a href="mailto:23pols.gupta@ug.ictmumbai.edu.in" class="c-val">23pols.gupta@ug.ictmumbai.edu.in</a>
+        </div>
+        <div class="c-block">
+          <div class="c-label">Phone</div>
+          <a href="tel:+918604042515" class="c-val">+91 86040 42515</a>
+        </div>
+        <div class="c-block">
+          <div class="c-label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/shourya-gupta-6310973a6" target="_blank" rel="noopener" class="c-val">linkedin.com/in/shourya-gupta ↗</a>
+        </div>
+        <div class="c-block">
+          <div class="c-label">Location</div>
+          <span class="c-val">Nathelal Parekh Marg, Matunga<br>Mumbai, Maharashtra 400019</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pages-wrapper -->
+
+<!-- ── MODAL ──────────────────────────────────────────── -->
+<div id="modal-overlay" onclick="closeModalOutside(event)">
+  <div id="modal-box">
+    <button id="modal-close" onclick="closeModal()">✕ Close</button>
+    <div id="modal-title"></div>
+    <div id="modal-sub"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+/* ── NAVIGATION ──────────────────────────────────── */
+const navLinks = document.querySelectorAll('nav a[data-page]');
+const pages    = document.querySelectorAll('.page');
+
+function navigate(id) {
+  pages.forEach(p => p.classList.remove('active'));
+  navLinks.forEach(l => l.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  const lk = document.querySelector(`a[data-page="${id}"]`);
+  if (pg) pg.classList.add('active');
+  if (lk) lk.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+navLinks.forEach(l => l.addEventListener('click', e => {
+  e.preventDefault();
+  navigate(l.dataset.page);
+}));
+
+/* ── IMAGE UPLOAD ────────────────────────────────── */
+function loadImg(input, id) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const c = document.getElementById(id);
+    if (!c) return;
+    c.querySelectorAll('.g-cell-icon,.g-cell-label,.ph-plus,.ph-text,.home-photo-ph').forEach(el => el.style.display='none');
+    let img = c.querySelector('img.up-img');
+    if (!img) { img = document.createElement('img'); img.className='up-img'; c.prepend(img); }
+    img.src = e.target.result;
+    try { localStorage.setItem('img_'+id, e.target.result); } catch(e){}
+  };
+  reader.readAsDataURL(file);
+}
+
+function loadMedia(input, id) {
+  const file = input.files[0];
+  if (!file) return;
+  const c = document.getElementById(id);
+  if (!c) return;
+  const isVideo = file.type.startsWith('video/');
+  const reader = new FileReader();
+  reader.onload = e => {
+    c.querySelectorAll('.slot-icon,.slot-text').forEach(el => el.style.display='none');
+    if (isVideo) {
+      let vid = c.querySelector('video');
+      if (!vid) { vid = document.createElement('video'); vid.controls = true; vid.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;'; c.prepend(vid); }
+      vid.src = e.target.result;
+    } else {
+      let img = c.querySelector('img.up-img');
+      if (!img) { img = document.createElement('img'); img.className='up-img'; c.prepend(img); }
+      img.src = e.target.result;
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function loadVid(input, id) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const c = document.getElementById(id);
+    if (!c) return;
+    c.querySelectorAll('.v-cell-icon,.v-cell-label').forEach(el => el.style.display='none');
+    let vid = c.querySelector('video');
+    if (!vid) { vid = document.createElement('video'); vid.controls = true; vid.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;'; c.prepend(vid); }
+    vid.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── MODAL CORE ──────────────────────────────────── */
+const overlay = document.getElementById('modal-overlay');
+const mTitle  = document.getElementById('modal-title');
+const mSub    = document.getElementById('modal-sub');
+const mBody   = document.getElementById('modal-body');
+
+function openModal(title, sub, bodyHTML) {
+  mTitle.textContent = title;
+  mSub.textContent   = sub;
+  mBody.innerHTML    = bodyHTML;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) { if (e.target === overlay) closeModal(); }
+
+/* ── INSTRUMENT MODAL ────────────────────────────── */
+/* Pre-embedded instrument images (real files in /images folder) */
+const instrPreloaded = {
+  dsc:  'images/dsc.svg',
+  xrd:  'images/xrd.svg',
+  utm:  'images/utm.svg',
+  pom:  'images/pom.svg'
+};
+
+function openInstrModal(name, fullName, desc, key) {
+  const slotId = 'instr-slot-' + key;
+  const preImg = instrPreloaded[key];
+
+  let bodyHTML;
+  if (preImg) {
+    bodyHTML = `
+      <p class="instr-info"><strong>${fullName}.</strong> ${desc}</p>
+      <div class="modal-img-zone" id="${slotId}">
+        <input type="file" accept="image/*,video/*" onchange="loadModalMedia(this,'${slotId}','instr_${key}')">
+        <img src="${preImg}" alt="${name}" class="up-img">
+      </div>`;
+  } else {
+    bodyHTML = `
+      <p class="instr-info"><strong>${fullName}.</strong> ${desc}</p>
+      <div class="modal-img-zone" id="${slotId}">
+        <input type="file" accept="image/*,video/*" onchange="loadModalMedia(this,'${slotId}','instr_${key}')">
+        <div class="slot-icon">◻</div>
+        <div class="modal-zone-label">Click to add an image or video of this instrument</div>
+      </div>`;
+  }
+  openModal(name, fullName, bodyHTML);
+  if (!preImg) restoreModalMedia(slotId, 'instr_'+key);
+}
+
+function loadModalMedia(input, slotId, storeKey) {
+  const file = input.files[0];
+  if (!file) return;
+  const isVideo = file.type.startsWith('video/');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const c = document.getElementById(slotId);
+    if (!c) return;
+    c.querySelectorAll('.slot-icon,.modal-zone-label').forEach(el => el.style.display='none');
+    if (isVideo) {
+      let vid = c.querySelector('video');
+      if (!vid) { vid = document.createElement('video'); vid.controls=true; c.prepend(vid); }
+      vid.src = e.target.result;
+    } else {
+      let img = c.querySelector('img.up-img');
+      if (!img) { img = document.createElement('img'); img.className='up-img'; c.prepend(img); }
+      img.src = e.target.result;
+      try { localStorage.setItem(storeKey, e.target.result); } catch(e){}
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function restoreModalMedia(slotId, storeKey) {
+  try {
+    const saved = localStorage.getItem(storeKey);
+    if (saved) {
+      setTimeout(() => {
+        const el = document.getElementById(slotId);
+        if (el) {
+          el.querySelectorAll('.slot-icon,.modal-zone-label').forEach(x => x.style.display='none');
+          let img = document.createElement('img'); img.className='up-img'; img.src=saved; el.prepend(img);
+        }
+      }, 30);
+    }
+  } catch(e){}
+}
+
+/* ── CERTIFICATION MODAL ─────────────────────────── */
+/* Pre-embedded certificate images (real files in /images folder) */
+const certPreloaded = {
+  'cert-btugrp': 'images/btugrp-feedback.jpg'
+};
+
+function openCertModal(name, sub, key) {
+  const slotId = 'cert-slot-' + key;
+  const preImg = certPreloaded[key];
+
+  let bodyHTML;
+  if (preImg) {
+    bodyHTML = `
+      <div class="modal-img-zone" id="${slotId}">
+        <input type="file" accept="image/*" onchange="loadModalMedia(this,'${slotId}','${key}')">
+        <img src="${preImg}" alt="${name}" class="up-img">
+      </div>`;
+  } else {
+    bodyHTML = `
+      <div class="modal-img-zone" id="${slotId}">
+        <input type="file" accept="image/*" onchange="loadModalMedia(this,'${slotId}','${key}')">
+        <div class="slot-icon">◻</div>
+        <div class="modal-zone-label">Click to add your certificate image</div>
+      </div>`;
+  }
+  openModal(name, sub, bodyHTML);
+  if (!preImg) restoreModalMedia(slotId, key);
+}
+
+/* ── AWARD MODAL ─────────────────────────────────── */
+const awardData = [
+  { title: 'Winner — Industry Defined Problem', sub: 'Rangotsav 2026 · ICT Mumbai · February 2026' },
+  { title: 'Runner-up — Smart Façade Paint',    sub: 'Rangotsav 2026 · ICT Mumbai · February 2026' },
+  { title: 'M.V. Joshi Platinum Jubilee Endowment Award', sub: 'ICT Mumbai' },
+  { title: 'Dr. Balwant Joshi Award',           sub: 'ICT Mumbai' },
+  { title: 'Academic Excellence Award',         sub: 'ICT Mumbai' },
+];
+
+function openAwardModal(idx) {
+  const a = awardData[idx];
+  const slotId = 'award-modal-slot-' + idx;
+  const bodyHTML = `
+    <div class="modal-img-zone" id="${slotId}">
+      <input type="file" accept="image/*" onchange="loadModalMedia(this,'${slotId}','award_img_${idx}')">
+      <div class="slot-icon">◻</div>
+      <div class="modal-zone-label">Click to upload certificate or award photo</div>
+    </div>`;
+  openModal(a.title, a.sub, bodyHTML);
+  restoreModalMedia(slotId, 'award_img_'+idx);
+}
+
+/* ── REPORT CARD MODAL ───────────────────────────── */
+function openReportModal(title, sub, key) {
+  const slotId = 'report-slot-' + key;
+  const bodyHTML = `
+    <div class="modal-img-zone" id="${slotId}">
+      <input type="file" accept="image/*,application/pdf" onchange="loadReportFile(this,'${slotId}','report_${key}')">
+      <div class="slot-icon">📄</div>
+      <div class="modal-zone-label">Click to upload report card (image or PDF)</div>
+    </div>`;
+  openModal(title, sub, bodyHTML);
+  restoreReportFile(slotId, 'report_'+key, key);
+}
+
+function loadReportFile(input, slotId, storeKey) {
+  const file = input.files[0];
+  if (!file) return;
+  const isPdf = file.type === 'application/pdf';
+  const reader = new FileReader();
+  reader.onload = e => {
+    const c = document.getElementById(slotId);
+    if (!c) return;
+    c.querySelectorAll('.slot-icon,.modal-zone-label').forEach(el => el.style.display='none');
+    if (isPdf) {
+      let emb = c.querySelector('embed');
+      if (!emb) { emb = document.createElement('embed'); emb.type='application/pdf'; c.prepend(emb); }
+      emb.src = e.target.result;
+    } else {
+      let img = c.querySelector('img.up-img');
+      if (!img) { img = document.createElement('img'); img.className='up-img'; c.prepend(img); }
+      img.src = e.target.result;
+    }
+    try { localStorage.setItem(storeKey, e.target.result); } catch(e){}
+    markReportBtn(storeKey.replace('report_',''));
+  };
+  reader.readAsDataURL(file);
+}
+
+function restoreReportFile(slotId, storeKey, key) {
+  try {
+    const saved = localStorage.getItem(storeKey);
+    if (saved) {
+      setTimeout(() => {
+        const el = document.getElementById(slotId);
+        if (el) {
+          el.querySelectorAll('.slot-icon,.modal-zone-label').forEach(x => x.style.display='none');
+          const isPdf = saved.startsWith('data:application/pdf');
+          if (isPdf) {
+            let emb = document.createElement('embed'); emb.type='application/pdf'; emb.src=saved; el.prepend(emb);
+          } else {
+            let img = document.createElement('img'); img.className='up-img'; img.src=saved; el.prepend(img);
+          }
+        }
+      }, 30);
+    }
+  } catch(e){}
+}
+
+function markReportBtn(key) {
+  document.querySelectorAll('.report-card-btn').forEach(btn => {
+    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${key}'`)) {
+      btn.classList.add('has-file');
+    }
+  });
+}
+
+/* ── GALLERY TABS ────────────────────────────────── */
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.g-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+/* ── GALLERY ENLARGE MODAL ───────────────────────── */
+function openGalleryModal(title, src) {
+  const bodyHTML = `
+    <div class="modal-img-zone" style="cursor:default; height:420px;">
+      <img src="${src}" alt="${title}" class="up-img" style="object-fit:contain; background:#fff;">
+    </div>`;
+  openModal(title, '', bodyHTML);
+}
+
+/* ── FULLSCREEN ZOOMABLE POSTER LIGHTBOX ─────────── */
+let posterZoom = 1, posterPanX = 0, posterPanY = 0, posterDragging = false, posterDragStart = {x:0,y:0};
+
+function openPosterLightbox(src, title) {
+  posterZoom = 1; posterPanX = 0; posterPanY = 0;
+  const overlay = document.createElement('div');
+  overlay.id = 'poster-lightbox';
+  overlay.innerHTML = `
+    <div id="poster-lightbox-bar">
+      <span id="poster-lightbox-title">${title}</span>
+      <div id="poster-lightbox-controls">
+        <button onclick="posterZoomBy(-0.25)" title="Zoom out">−</button>
+        <span id="poster-zoom-pct">100%</span>
+        <button onclick="posterZoomBy(0.25)" title="Zoom in">+</button>
+        <button onclick="posterZoomReset()" title="Reset">Reset</button>
+        <button onclick="closePosterLightbox()" id="poster-lightbox-close">✕ Close</button>
+      </div>
+    </div>
+    <div id="poster-lightbox-viewport">
+      <img id="poster-lightbox-img" src="${src}" alt="${title}">
+    </div>`;
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  const img = document.getElementById('poster-lightbox-img');
+  const viewport = document.getElementById('poster-lightbox-viewport');
+
+  viewport.addEventListener('wheel', posterWheelZoom, { passive: false });
+  img.addEventListener('mousedown', posterDragStartFn);
+  window.addEventListener('mousemove', posterDragMove);
+  window.addEventListener('mouseup', posterDragEnd);
+
+  // Touch support (pinch + pan)
+  let lastTouchDist = null;
+  viewport.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (lastTouchDist) {
+        posterZoom = Math.min(6, Math.max(1, posterZoom + (dist - lastTouchDist) * 0.005));
+        updatePosterTransform();
+      }
+      lastTouchDist = dist;
+    } else if (e.touches.length === 1 && posterDragging) {
+      posterPanX = e.touches[0].clientX - posterDragStart.x;
+      posterPanY = e.touches[0].clientY - posterDragStart.y;
+      updatePosterTransform();
+    }
+  }, { passive: false });
+  viewport.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+      posterDragging = true;
+      posterDragStart = { x: e.touches[0].clientX - posterPanX, y: e.touches[0].clientY - posterPanY };
+    }
+  });
+  viewport.addEventListener('touchend', () => { posterDragging = false; lastTouchDist = null; });
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) closePosterLightbox(); });
+  document.addEventListener('keydown', posterKeyHandler);
+}
+
+function posterKeyHandler(e) {
+  if (e.key === 'Escape') closePosterLightbox();
+  if (e.key === '+') posterZoomBy(0.25);
+  if (e.key === '-') posterZoomBy(-0.25);
+}
+
+function posterWheelZoom(e) {
+  e.preventDefault();
+  posterZoomBy(e.deltaY < 0 ? 0.15 : -0.15);
+}
+
+function posterZoomBy(delta) {
+  posterZoom = Math.min(6, Math.max(1, posterZoom + delta));
+  if (posterZoom === 1) { posterPanX = 0; posterPanY = 0; }
+  updatePosterTransform();
+}
+
+function posterZoomReset() {
+  posterZoom = 1; posterPanX = 0; posterPanY = 0;
+  updatePosterTransform();
+}
+
+function updatePosterTransform() {
+  const img = document.getElementById('poster-lightbox-img');
+  const pct = document.getElementById('poster-zoom-pct');
+  if (img) img.style.transform = `translate(${posterPanX}px, ${posterPanY}px) scale(${posterZoom})`;
+  if (img) img.style.cursor = posterZoom > 1 ? 'grab' : 'default';
+  if (pct) pct.textContent = Math.round(posterZoom * 100) + '%';
+}
+
+function posterDragStartFn(e) {
+  if (posterZoom <= 1) return;
+  posterDragging = true;
+  posterDragStart = { x: e.clientX - posterPanX, y: e.clientY - posterPanY };
+  e.preventDefault();
+}
+
+function posterDragMove(e) {
+  if (!posterDragging) return;
+  posterPanX = e.clientX - posterDragStart.x;
+  posterPanY = e.clientY - posterDragStart.y;
+  updatePosterTransform();
+}
+
+function posterDragEnd() { posterDragging = false; }
+
+function closePosterLightbox() {
+  const overlay = document.getElementById('poster-lightbox');
+  if (overlay) overlay.remove();
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', posterKeyHandler);
+  window.removeEventListener('mousemove', posterDragMove);
+  window.removeEventListener('mouseup', posterDragEnd);
+}
+
+/* ── RESTORE ON LOAD ─────────────────────────────── */
+(function restore() {
+  const imgIds = ['home-photo','gc-1','gc-2','gc-3','gc-4','gc-5','gc-6'];
+  imgIds.forEach(id => {
+    try {
+      const s = localStorage.getItem('img_'+id);
+      if (!s) return;
+      const c = document.getElementById(id);
+      if (!c) return;
+      c.querySelectorAll('.g-cell-icon,.g-cell-label,.ph-plus,.ph-text,.home-photo-ph').forEach(el => el.style.display='none');
+      let img = document.createElement('img'); img.className='up-img'; img.src=s; c.prepend(img);
+    } catch(e){}
+  });
+
+  const reportKeys = ['rc-1','rc-2','rc-3','rc-4','rc-5','rc-6','rc-7','rc-8','rc-icse','rc-isc'];
+  reportKeys.forEach(k => {
+    try {
+      if (localStorage.getItem('report_'+k)) markReportBtn(k);
+    } catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
