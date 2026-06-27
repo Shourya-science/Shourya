@@ -1122,7 +1122,6 @@ h3.entry-title {
       <div>
         <div class="home-photo-block">
           <div class="home-photo-frame" id="home-photo">
-            <input type="file" accept="image/*" onchange="loadImg(this,'home-photo')">
             <img src="images/home-photo.jpg" alt="Shourya Gupta" class="up-img">
           </div>
 
@@ -1231,10 +1230,6 @@ h3.entry-title {
           <div class="media-slot video-portrait" id="res-vid-1">
             <video src="images/psa-research-video.mp4" controls style="position:absolute;inset:0;width:100%;height:100%;z-index:2;"></video>
           </div>
-          <label style="display:inline-block; margin-top:8px; font-family:var(--font-h); font-size:7.5pt; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink3); cursor:pointer;">
-            Replace video
-            <input type="file" accept="image/*,video/*" onchange="loadMedia(this,'res-vid-1')" style="display:none;">
-          </label>
         </div>
       </div>
 
@@ -1491,7 +1486,7 @@ h3.entry-title {
           <img src="images/gallery-award-ceremony.jpg" alt="Award ceremony Rangotsav 2026" class="up-img" style="object-fit:cover;">
           <div class="g-cell-caption">Award Ceremony</div>
         </div>
-        <div class="g-cell" id="gc-6"><input type="file" accept="image/*" onchange="loadImg(this,'gc-6')"><div class="g-cell-icon">◻</div><div class="g-cell-label">Other</div></div>
+        <div class="g-cell" id="gc-6" style="cursor:default;"><div class="g-cell-icon">◻</div><div class="g-cell-label">Coming Soon</div></div>
       </div>
     </div>
 
@@ -1503,8 +1498,8 @@ h3.entry-title {
         <div class="v-cell" style="cursor:default;">
           <video src="images/gallery-spherulite-presentation.mp4" controls style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;"></video>
         </div>
-        <div class="v-cell" id="gv-3"><input type="file" accept="video/*" onchange="loadVid(this,'gv-3')"><div class="v-cell-icon">▶</div><div class="v-cell-label">Project Demo</div></div>
-        <div class="v-cell" id="gv-4"><input type="file" accept="video/*" onchange="loadVid(this,'gv-4')"><div class="v-cell-icon">▶</div><div class="v-cell-label">Other</div></div>
+        <div class="v-cell" id="gv-3" style="cursor:default;"><div class="v-cell-icon">▶</div><div class="v-cell-label">Coming Soon</div></div>
+        <div class="v-cell" id="gv-4" style="cursor:default;"><div class="v-cell-icon">▶</div><div class="v-cell-label">Coming Soon</div></div>
       </div>
       <p class="body-text" style="margin-top:14px; font-style:italic; color:var(--ink3); font-size:9pt;">Electroplating of Polymers · Spherulite Growth Presentation</p>
     </div>
@@ -1667,21 +1662,18 @@ function openInstrModal(name, fullName, desc, key) {
   if (preImg) {
     bodyHTML = `
       <p class="instr-info"><strong>${fullName}.</strong> ${desc}</p>
-      <div class="modal-img-zone" id="${slotId}">
-        <input type="file" accept="image/*,video/*" onchange="loadModalMedia(this,'${slotId}','instr_${key}')">
+      <div class="modal-img-zone" id="${slotId}" style="cursor:default;">
         <img src="${preImg}" alt="${name}" class="up-img">
       </div>`;
   } else {
     bodyHTML = `
       <p class="instr-info"><strong>${fullName}.</strong> ${desc}</p>
-      <div class="modal-img-zone" id="${slotId}">
-        <input type="file" accept="image/*,video/*" onchange="loadModalMedia(this,'${slotId}','instr_${key}')">
+      <div class="modal-img-zone" id="${slotId}" style="cursor:default;">
         <div class="slot-icon">◻</div>
-        <div class="modal-zone-label">Click to add an image or video of this instrument</div>
+        <div class="modal-zone-label">Image coming soon</div>
       </div>`;
   }
   openModal(name, fullName, bodyHTML);
-  if (!preImg) restoreModalMedia(slotId, 'instr_'+key);
 }
 
 function loadModalMedia(input, slotId, storeKey) {
@@ -1735,107 +1727,17 @@ function openCertModal(name, sub, key) {
   let bodyHTML;
   if (preImg) {
     bodyHTML = `
-      <div class="modal-img-zone" id="${slotId}">
-        <input type="file" accept="image/*" onchange="loadModalMedia(this,'${slotId}','${key}')">
+      <div class="modal-img-zone" id="${slotId}" style="cursor:default;">
         <img src="${preImg}" alt="${name}" class="up-img">
       </div>`;
   } else {
     bodyHTML = `
-      <div class="modal-img-zone" id="${slotId}">
-        <input type="file" accept="image/*" onchange="loadModalMedia(this,'${slotId}','${key}')">
+      <div class="modal-img-zone" id="${slotId}" style="cursor:default;">
         <div class="slot-icon">◻</div>
-        <div class="modal-zone-label">Click to add your certificate image</div>
+        <div class="modal-zone-label">Certificate image coming soon</div>
       </div>`;
   }
   openModal(name, sub, bodyHTML);
-  if (!preImg) restoreModalMedia(slotId, key);
-}
-
-/* ── AWARD MODAL ─────────────────────────────────── */
-const awardData = [
-  { title: 'Winner — Industry Defined Problem', sub: 'Rangotsav 2026 · ICT Mumbai · February 2026' },
-  { title: 'Runner-up — Smart Façade Paint',    sub: 'Rangotsav 2026 · ICT Mumbai · February 2026' },
-  { title: 'M.V. Joshi Platinum Jubilee Endowment Award', sub: 'ICT Mumbai' },
-  { title: 'Dr. Balwant Joshi Award',           sub: 'ICT Mumbai' },
-  { title: 'Academic Excellence Award',         sub: 'ICT Mumbai' },
-];
-
-function openAwardModal(idx) {
-  const a = awardData[idx];
-  const slotId = 'award-modal-slot-' + idx;
-  const bodyHTML = `
-    <div class="modal-img-zone" id="${slotId}">
-      <input type="file" accept="image/*" onchange="loadModalMedia(this,'${slotId}','award_img_${idx}')">
-      <div class="slot-icon">◻</div>
-      <div class="modal-zone-label">Click to upload certificate or award photo</div>
-    </div>`;
-  openModal(a.title, a.sub, bodyHTML);
-  restoreModalMedia(slotId, 'award_img_'+idx);
-}
-
-/* ── REPORT CARD MODAL ───────────────────────────── */
-function openReportModal(title, sub, key) {
-  const slotId = 'report-slot-' + key;
-  const bodyHTML = `
-    <div class="modal-img-zone" id="${slotId}">
-      <input type="file" accept="image/*,application/pdf" onchange="loadReportFile(this,'${slotId}','report_${key}')">
-      <div class="slot-icon">📄</div>
-      <div class="modal-zone-label">Click to upload report card (image or PDF)</div>
-    </div>`;
-  openModal(title, sub, bodyHTML);
-  restoreReportFile(slotId, 'report_'+key, key);
-}
-
-function loadReportFile(input, slotId, storeKey) {
-  const file = input.files[0];
-  if (!file) return;
-  const isPdf = file.type === 'application/pdf';
-  const reader = new FileReader();
-  reader.onload = e => {
-    const c = document.getElementById(slotId);
-    if (!c) return;
-    c.querySelectorAll('.slot-icon,.modal-zone-label').forEach(el => el.style.display='none');
-    if (isPdf) {
-      let emb = c.querySelector('embed');
-      if (!emb) { emb = document.createElement('embed'); emb.type='application/pdf'; c.prepend(emb); }
-      emb.src = e.target.result;
-    } else {
-      let img = c.querySelector('img.up-img');
-      if (!img) { img = document.createElement('img'); img.className='up-img'; c.prepend(img); }
-      img.src = e.target.result;
-    }
-    try { localStorage.setItem(storeKey, e.target.result); } catch(e){}
-    markReportBtn(storeKey.replace('report_',''));
-  };
-  reader.readAsDataURL(file);
-}
-
-function restoreReportFile(slotId, storeKey, key) {
-  try {
-    const saved = localStorage.getItem(storeKey);
-    if (saved) {
-      setTimeout(() => {
-        const el = document.getElementById(slotId);
-        if (el) {
-          el.querySelectorAll('.slot-icon,.modal-zone-label').forEach(x => x.style.display='none');
-          const isPdf = saved.startsWith('data:application/pdf');
-          if (isPdf) {
-            let emb = document.createElement('embed'); emb.type='application/pdf'; emb.src=saved; el.prepend(emb);
-          } else {
-            let img = document.createElement('img'); img.className='up-img'; img.src=saved; el.prepend(img);
-          }
-        }
-      }, 30);
-    }
-  } catch(e){}
-}
-
-function markReportBtn(key) {
-  document.querySelectorAll('.report-card-btn').forEach(btn => {
-    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${key}'`)) {
-      btn.classList.add('has-file');
-    }
-  });
 }
 
 /* ── GALLERY TABS ────────────────────────────────── */
@@ -1973,27 +1875,6 @@ function closePosterLightbox() {
   window.removeEventListener('mouseup', posterDragEnd);
 }
 
-/* ── RESTORE ON LOAD ─────────────────────────────── */
-(function restore() {
-  const imgIds = ['home-photo','gc-1','gc-2','gc-3','gc-4','gc-5','gc-6'];
-  imgIds.forEach(id => {
-    try {
-      const s = localStorage.getItem('img_'+id);
-      if (!s) return;
-      const c = document.getElementById(id);
-      if (!c) return;
-      c.querySelectorAll('.g-cell-icon,.g-cell-label,.ph-plus,.ph-text,.home-photo-ph').forEach(el => el.style.display='none');
-      let img = document.createElement('img'); img.className='up-img'; img.src=s; c.prepend(img);
-    } catch(e){}
-  });
-
-  const reportKeys = ['rc-1','rc-2','rc-3','rc-4','rc-5','rc-6','rc-7','rc-8','rc-icse','rc-isc'];
-  reportKeys.forEach(k => {
-    try {
-      if (localStorage.getItem('report_'+k)) markReportBtn(k);
-    } catch(e){}
-  });
-})();
 </script>
 </body>
 </html>
